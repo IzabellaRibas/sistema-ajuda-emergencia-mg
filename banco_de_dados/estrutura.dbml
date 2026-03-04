@@ -1,0 +1,158 @@
+Table voluntarios {
+  id varchar [pk ]
+  nome varchar
+  descricao text
+  categoria varchar
+  contato varchar
+  cidade varchar
+  bairro varchar
+  lat double  
+  lng double  
+}
+
+Table pontos_ajuda {
+  id varchar [pk ]
+  nome varchar
+  tipo varchar // abrigo | coleta | doacao | entidade | abrigo_animal | ponto
+  descricao text
+  endereco varchar
+  cidade varchar
+  bairro varchar
+  lat double  
+  lng double  
+  contato varchar
+  horario varchar
+}
+ 
+
+Table pets {
+  id varchar [pk ]
+  tipo varchar // perdido | encontrado | adocao
+  nome varchar
+  especie varchar
+  porte varchar
+  descricao text
+  status varchar
+  contato varchar
+  cidade varchar
+  bairro varchar
+  imagem_url varchar
+}
+
+
+// PRIMEIRO SITE
+
+Table emergencias {
+  id varchar [pk]
+  nome varchar // Bombeiro/samu
+  numero varchar 
+  descricao text 
+  tag_urgencia varchar 
+}
+
+Table organizacoes {
+  id varchar [pk]
+  nome varchar
+  descricao text
+  link_oficial varchar
+}
+
+Table links_ajuda {
+  id varchar [pk]
+  titulo varchar 
+  descricao text 
+  url_destino varchar 
+  categoria varchar 
+}
+
+//duvida, pq esse é a msm coisa que os anteriores, porem 
+// ele n tem link, mas sim telefone, mas nao se enquadra
+//como emergencia ????
+Table apoio_emocional {
+  id varchar [pk]
+  nome varchar 
+  numero varchar 
+  descricao text 
+  //categoria varchar (o nome da tabela ja ta a categoria ??)
+}
+
+Table dashboard_projeto {
+  id varchar [pk]
+  status_alerta varchar 
+  localizacao_foco varchar 
+  ultima_atualizacao datetime 
+}
+
+// SEGUNDO SITE
+
+Table cidades{
+  id varchar [pk]
+  nome varchar 
+  estado varchar 
+}
+
+Table sites_parceiros{
+  id varchar [pk]
+  nome varchar 
+  descricao varchar 
+  url_externa varchar
+}
+
+Table solicitacoes_cadastro {
+  id varchar [pk]
+  nome_ponto varchar 
+  tipo_ponto varchar 
+  endereco_completo varchar
+  complemento varchar
+   cidade_id varchar [ref: > cidades.id]
+  horario_funcionamento varchar
+  aceita_alimentos boolean
+  aceita_roupas boolean
+  aceita_higiene boolean
+  aceita_agua boolean
+  aceita_medicamentos boolean
+  aceita_outros boolean
+  nome_responsavel varchar
+  contato_responsavel varchar
+}
+
+
+// TERCEIRO LINK
+
+Table denuncias {
+  id varchar [pk]
+  cidade varchar
+  tipo_ocorrencia varchar
+  descricao_detalhada text
+  link_pagina_fake varchar
+  chave_pix_fraudulenta varchar
+}
+
+Table contatos_importantes {
+  id varchar [pk]
+  orgao varchar
+  numero varchar
+}
+
+
+Table creditos_desenvolvimento {
+  id varchar [pk]
+  nome_desenvolvedor varchar 
+  github_link varchar
+  instagram_handle varchar
+}
+
+Table apoiadores {
+  id varchar [pk]
+  nome varchar 
+}
+
+Table alertas_oficiais {
+  id varchar [pk]
+  titulo text
+  emissor varchar
+  descricao varchar
+  cidade_afetada varchar
+  data_hora datetime
+  nivel_risco varchar
+}
