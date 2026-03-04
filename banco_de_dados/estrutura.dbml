@@ -65,16 +65,16 @@ Table links_ajuda {
   categoria varchar 
 }
 
-//duvida, pq esse é a msm coisa que os anteriores, porem 
-// ele n tem link, mas sim telefone, mas nao se enquadra
-//como emergencia ????
-Table apoio_emocional {
+Table apoios {
   id varchar [pk]
   nome varchar 
-  numero varchar 
+  conteudo_contato text  
+  tipo_contato varchar   
   descricao text 
-  //categoria varchar (o nome da tabela ja ta a categoria ??)
+  categoria varchar 
 }
+
+
 
 Table dashboard_projeto {
   id varchar [pk]
@@ -155,4 +155,73 @@ Table alertas_oficiais {
   cidade_afetada varchar
   data_hora datetime
   nivel_risco varchar
+  status varchar
+}
+
+// quarto link
+
+Table registros {
+  id varchar [pk]
+  tipo varchar
+  usuario_nome varchar
+  whatsapp varchar
+  cidade varchar
+  bairro varchar
+  titulo_item varchar
+  descricao text
+  categorias varchar
+  zona_atuacao varchar
+  horarios_disponiveis varchar
+  tipo_contato varchar
+  status varchar
+  data_publicacao datetime
+}
+
+Table canais_pix {
+  id varchar [pk]
+  nome varchar
+  descricao text
+  chave_pix varchar
+  status varchar
+}
+
+Table solicitacoes_kits {
+  id varchar [pk]
+  kit_tipo varchar
+  nome_completo varchar
+  whatsapp varchar
+  cpf varchar
+  itens_selecionados varchar
+  status varchar
+  data_solicitacao datetime
+}
+
+Table parceiros {
+  id varchar [pk]
+  nome varchar
+  logo_url varchar
+  link_site varchar
+}
+
+Table reportar_ocorrencia{
+  id varchar
+  tipo varchar
+  endereco_completo varchar
+  bairro varchar
+  ponto_referencia varchar
+  descricao vachar
+}
+
+
+Table solicitacoes_vistoria {
+  id varchar [pk]
+  responsavel_nome varchar
+  contato_whatsapp varchar
+  tipo_dano varchar          
+  urgencia_percebida varchar 
+  tipo_imovel varchar        
+  bairro varchar
+  endereco_completo varchar
+  status varchar             
+  data_solicitacao datetime
 }
