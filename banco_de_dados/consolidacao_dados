@@ -57,7 +57,7 @@ Table agentes_ajuda {
   nome varchar
   whatsapp varchar
 
-  //voluntario_braco/psicologo/transporte/doador
+  //voluntario/psicologo/transporte/doador
   tipo_ajuda varchar 
   descricao text
   
