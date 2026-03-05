@@ -1,0 +1,131 @@
+Table locais_cidades {
+  id varchar [pk]
+  nome varchar 
+  estado varchar 
+}
+
+Table creditos_sistema {
+  id varchar [pk]
+  nome_desenvolvedor varchar 
+  github_link varchar
+  instagram_handle varchar
+
+  //desenvolvedor/apoiador_financeiro
+  tipo_apoio varchar 
+}
+
+//APIO, PIX E PARCEIROS
+
+Table entidades {
+  id varchar [pk]
+  nome varchar
+
+  //abrigo/ponto_coleta/ong/parceiro/canal_pix
+  tipo_entidade varchar 
+  descricao text
+  
+  //contato e Links
+  contato varchar
+  responsavel_nome varchar
+  url_externa varchar
+  chave_pix varchar
+  
+  //Localização
+  endereco_completo varchar
+  bairro varchar
+  cidade_id varchar [ref: > locais_cidades.id]
+  lat double
+  lng double
+  
+  //Atributos de Coleta (Vindo das solicitações de cadastro)
+  aceita_alimentos boolean
+  aceita_roupas boolean
+  aceita_higiene boolean
+  aceita_agua boolean
+  aceita_medicamentos boolean
+  
+  horario_funcionamento varchar
+
+  //ativo/pendente_aprovacao/lotado
+  status varchar 
+}
+
+//PESSOAS E VOLUNTARIOS
+
+Table agentes_ajuda {
+  id varchar [pk]
+  nome varchar
+  whatsapp varchar
+
+  //voluntario_braco/psicologo/transporte/doador
+  tipo_ajuda varchar 
+  descricao text
+  
+  // Atuação
+  cidade_id varchar [ref: > locais_cidades.id]
+  bairro varchar
+  zona_atuacao varchar
+  horarios_disponiveis varchar
+
+  //disponivel/ocupado
+  status varchar 
+  data_cadastro datetime
+}
+
+//CHAMADOS/ALERTAS/OCORRENCIAS
+
+Table chamados_e_alertas {
+  id varchar [pk]
+
+  //alerta_oficial/denuncia_fraude/pedido_vistoria/pedido_kit/ocorrencia_rua
+  tipo_registro varchar 
+  titulo varchar
+  descricao text
+  
+  // Informações de Risco/Urgencia
+
+  // baixo/medio/alto/critico
+  nivel_risco varchar 
+  tag_urgencia varchar
+  
+  // Dados do Solicitante
+  solicitante_nome varchar
+  solicitante_contato varchar
+  solicitante_cpf varchar
+  
+  // Localização do Incidente
+  endereco_local varchar
+  bairro_local varchar
+  cidade_id varchar [ref: > locais_cidades.id]
+  
+  // Específicos para Fraudes/Vistorias
+  // link_pagina_fake ou fotos
+  link_referencia varchar 
+  tipo_imovel varchar
+
+  //aberto/em_analise/resolvido/falso
+  status varchar 
+  data_hora datetime
+}
+
+//GESTAO DOS PETS
+
+Table pets {
+  id varchar [pk]
+
+  // perdido/encontrado/adocao
+  situacao varchar 
+  nome varchar
+  especie varchar
+  porte varchar
+  descricao text
+  contato_responsavel varchar
+  cidade_id varchar [ref: > locais_cidades.id]
+  bairro varchar
+  imagem_url varchar
+  status varchar
+}
+
+
+
+
