@@ -1,0 +1,91 @@
+// TABELA DE LIMPEZA CENTRAL DE LOCALIZAÇÃO E CONTATO
+Table informacoes_contato_local {
+  id integer [pk, increment]
+  cidade_id varchar [ref: > locais_cities.id]
+  bairro varchar
+  rua varchar
+  numero varchar
+  complemento varchar
+  lat double
+  lng double
+  contato_principal varchar
+  responsavel_nome varchar
+}
+
+// LISTAGEM DE CIDADES E ESTADOS
+Table locais_cities {
+  id varchar [pk]
+  nome varchar 
+  estado varchar 
+}
+
+// ENTIDADES E PONTOS DE APOIO
+Table entidades {
+  id varchar [pk]
+  nome varchar
+  tipo_entidade varchar 
+  descricao text
+  info_id integer [ref: - informacoes_contato_local.id]
+  url_externa varchar
+  chave_pix varchar
+  aceita_alimentos boolean
+  aceita_roupas boolean
+  aceita_higiene boolean
+  aceita_agua boolean
+  aceita_medicamentos boolean
+  horario_funcionamento varchar
+  status varchar 
+}
+
+// VOLUNTARIOS E AGENTES DE AJUDA
+Table agentes_ajuda {
+  id varchar [pk]
+  nome varchar
+  info_id integer [ref: - informacoes_contato_local.id]
+  tipo_ajuda varchar 
+  descricao text
+  zona_atuacao varchar
+  horarios_disponiveis varchar
+  status varchar 
+  data_cadastro datetime
+}
+
+// CHAMADOS ALERTAS E OCORRENCIAS
+Table chamados_e_alertas {
+  id varchar [pk]
+  tipo_registro varchar 
+  titulo varchar
+  descricao text
+  nivel_risco varchar 
+  tag_urgencia varchar
+  solicitante_nome varchar
+  solicitante_contato varchar
+  solicitante_cpf varchar
+  info_id integer [ref: - informacoes_contato_local.id]
+  link_referencia varchar 
+  tipo_imovel varchar
+  status varchar 
+  data_hora datetime
+}
+
+// GESTAO E CADASTRO DE PETS
+Table pets {
+  id varchar [pk]
+  situacao varchar 
+  nome varchar
+  especie varchar
+  porte varchar
+  descricao text
+  info_id integer [ref: - informacoes_contato_local.id]
+  imagem_url varchar
+  status varchar
+}
+
+// TABELA ISOLADA PARA O RODAPÉ DO SITE
+Table creditos_sistema {
+  id varchar [pk]
+  nome_desenvolvedor varchar 
+  github_link varchar
+  instagram_handle varchar
+  tipo_apoio varchar 
+}
